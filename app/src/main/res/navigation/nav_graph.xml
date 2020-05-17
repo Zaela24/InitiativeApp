@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--Copyright 2020, Zaela Rose-->
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,5 +8,15 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.zaelaroseapps.initiativeapp.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_newGameFragment"
+            app:destination="@id/newGameFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/newGameFragment"
+        android:name="com.zaelaroseapps.initiativeapp.newGame.NewGameFragment"
+        android:label="NewGameFragment" />
 </navigation>

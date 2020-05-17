@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="enemy_ally_str_arr">
+        <item>Neutral</item>
+        <item>Enemy</item>
+        <item>Ally</item>
+    </string-array>
+</resources>

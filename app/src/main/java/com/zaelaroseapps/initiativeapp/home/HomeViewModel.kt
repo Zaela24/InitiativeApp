@@ -1,3 +1,5 @@
+// Copyright 2020, Zaela Rose
+
 package com.zaelaroseapps.initiativeapp.home
 
 import androidx.lifecycle.LiveData
