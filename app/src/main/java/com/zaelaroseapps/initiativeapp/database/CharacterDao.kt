@@ -17,6 +17,9 @@ interface CharacterDao {
     @Update
     fun update(character: Character)
 
+    @Query("SELECT * FROM game_table")
+    fun getAll(): List<Character>
+
     @Query("SELECT * FROM game_table WHERE charID = :key")
     fun get(key: Int): Character?
 

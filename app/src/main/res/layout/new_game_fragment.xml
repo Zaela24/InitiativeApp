@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:fontFamily="@font/slackey"
-                android:inputType="text"
+                android:inputType="textCapWords"
                 android:singleLine="true"
                 android:text="Encounter 1"
                 android:textColorHighlight="@color/primaryColor"
@@ -98,11 +98,7 @@
             app:layout_constraintEnd_toStartOf="@id/guideline2"
             app:layout_constraintStart_toEndOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@id/divider"
-            tools:listitem="@layout/new_character_list_item"
-            app:listData="@{viewModel.characterList}"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager">
-
-        </androidx.recyclerview.widget.RecyclerView>
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
 
         <View
             android:id="@+id/view"
@@ -123,7 +119,8 @@
             android:layout_marginBottom="8dp"
             android:text="Start"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline" />
+            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            android:onClick="@{() -> viewModel.onAdd()}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

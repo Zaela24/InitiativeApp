@@ -34,7 +34,6 @@ class NewGameViewModel(val database: CharacterDao) : ViewModel() {
 //    fun onTeamSelected(teamStr: String) {
 //        _team.value = teamStr
 //    }
-
     private var _characterClicked = MutableLiveData<Int>()
     val characterClicked: LiveData<Int>
         get() = _characterClicked
@@ -67,11 +66,7 @@ class NewGameViewModel(val database: CharacterDao) : ViewModel() {
         _navigateToGame.value = false
     }
 
-    private suspend fun addCharacter(character: Character) {
-        withContext(Dispatchers.IO) {
-            database.addNewCharacter(character)
-        }
-    }
+
 
     private suspend fun editCharacter(character: Character) {
         withContext(Dispatchers.IO) {
@@ -101,6 +96,12 @@ class NewGameViewModel(val database: CharacterDao) : ViewModel() {
             addCharacter(newCharacter)
         }
     }
+    private suspend fun addCharacter(character: Character) {
+        withContext(Dispatchers.IO) {
+            database.addNewCharacter(character)
+           // _characterList.value = database.getAll()
+        }
+    }
 
     fun onEdit() {
         uiScope.launch {
@@ -115,7 +116,6 @@ class NewGameViewModel(val database: CharacterDao) : ViewModel() {
     }
 
     init {
-        onAdd()
         getList()
     }
 

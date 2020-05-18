@@ -21,7 +21,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/icon_image_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -31,15 +31,17 @@
             app:srcCompat="@drawable/ic_neutral_character_icon" />
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/team_spinner"
             style="@style/OutlinedEditText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:dropDownWidth="match_parent"
             android:entries="@array/enemy_ally_str_arr"
             android:spinnerMode="dropdown"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView" />
+            app:layout_constraintBottom_toTopOf="@id/textView2"
+            app:layout_constraintStart_toEndOf="@+id/icon_image_view"
+            app:layout_constraintTop_toTopOf="@+id/icon_image_view" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textView"
@@ -49,14 +51,17 @@
             android:layout_marginStart="8dp"
             android:hint="Name"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/spinner"
+            app:layout_constraintBottom_toBottomOf="@+id/team_spinner"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/spinner"
-            app:layout_constraintTop_toTopOf="@+id/spinner">
+            app:layout_constraintStart_toEndOf="@+id/team_spinner"
+            app:layout_constraintTop_toTopOf="@+id/team_spinner">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/name_edit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -68,14 +73,17 @@
             android:layout_marginTop="8dp"
             android:hint="HP"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="@+id/spinner"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/icon_image_view"
+            app:layout_constraintEnd_toEndOf="@+id/team_spinner"
+            app:layout_constraintStart_toEndOf="@+id/icon_image_view"
             app:layout_constraintTop_toBottomOf="@+id/textView">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/hp_edit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -86,14 +94,17 @@
             android:layout_marginTop="8dp"
             android:hint="Initiative Roll"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/icon_image_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView"
             app:layout_constraintTop_toBottomOf="@+id/textView">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/init_roll_edit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <CheckBox
@@ -106,7 +117,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/icon_image_view" />
 
         <View
             android:id="@+id/divider2"

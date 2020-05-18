@@ -6,6 +6,7 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.zaelaroseapps.initiativeapp.database.Character
+import com.zaelaroseapps.initiativeapp.newGame.DataItem
 import com.zaelaroseapps.initiativeapp.newGame.NewCharacterListAdapter
 
 @BindingAdapter("charIcon")
@@ -16,14 +17,5 @@ fun ImageView.setCharIcon(item: Character?) {
             "Ally" -> R.drawable.ic_hero_icon
             else -> R.drawable.ic_neutral_character_icon
         })
-    }
-}
-
-@BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<Character>?) {
-    val adapter = recyclerView.adapter as NewCharacterListAdapter
-    adapter.submitList(data) {
-        // scroll the list to the top after the diffs are calculated and posted
-        recyclerView.scrollToPosition(0)
     }
 }

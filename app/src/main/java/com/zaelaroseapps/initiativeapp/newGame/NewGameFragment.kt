@@ -15,7 +15,7 @@ import com.zaelaroseapps.initiativeapp.databinding.NewGameFragmentBinding
 
 class NewGameFragment : Fragment() {
 
-    //private lateinit var viewModel: NewGameViewModel
+    private lateinit var viewModel: NewGameViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,7 +31,7 @@ class NewGameFragment : Fragment() {
 
         val viewModelFactory = NewGameViewModelFactory(dataSource)
 
-        val viewModel = ViewModelProvider(this, viewModelFactory).get(NewGameViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(NewGameViewModel::class.java)
 
         binding.viewModel = viewModel
 
@@ -43,6 +43,13 @@ class NewGameFragment : Fragment() {
         })
 
         binding.characterList.adapter = adapter
+
+        // Using viewLifeCycleOwner makes the observer only work while this fragment is on screen
+        viewModel.characterList.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.addFooterAndSubmitList(it)
+            }
+        })
 
         return binding.root
     }
