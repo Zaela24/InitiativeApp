@@ -18,7 +18,7 @@ import kotlinx.coroutines.withContext
 private const val ITEM = 0
 private const val FOOTER = 1
 
-class NewCharacterListAdapter(val clickListener: NewCharacterClickListener):
+class NewCharacterListAdapter(private val clickListener: NewCharacterClickListener):
     ListAdapter<DataItem, RecyclerView.ViewHolder>(DiffCallback) {
 
     companion object DiffCallback : DiffUtil.ItemCallback<DataItem>() {

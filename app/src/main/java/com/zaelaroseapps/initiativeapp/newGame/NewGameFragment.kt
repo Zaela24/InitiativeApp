@@ -36,13 +36,13 @@ class NewGameFragment : Fragment() {
         binding.viewModel = viewModel
 
         val manager = GridLayoutManager(activity, 1)
-        binding.characterList.layoutManager = manager
+        binding.newCharacterList.layoutManager = manager
 
         val adapter = NewCharacterListAdapter(NewCharacterClickListener { charID ->
             viewModel.onCharacterClicked(charID)
         })
 
-        binding.characterList.adapter = adapter
+        binding.newCharacterList.adapter = adapter
 
         // Using viewLifeCycleOwner makes the observer only work while this fragment is on screen
         viewModel.characterList.observe(viewLifecycleOwner, Observer {

@@ -20,7 +20,7 @@ import kotlinx.coroutines.*
 class HomeFragment : Fragment() {
 
     private lateinit var viewModel: HomeViewModel
-    val thisJob = Job()
+    private val thisJob = Job()
 
 
     override fun onCreateView(
@@ -50,6 +50,18 @@ class HomeFragment : Fragment() {
                 viewModel.navigateToNewGame
             }
         })
+
+        viewModel.navigateToGame.observe(viewLifecycleOwner,
+            Observer { shouldNavigate ->
+                if (shouldNavigate == true) {
+                    val database = CharacterDatabase
+                        .getInstance(requireNotNull(context))
+                        .characterDao
+                    val navController = binding.root.findNavController()
+                    navController.navigate(R.id.action_homeFragment_to_gameFragment)
+                    viewModel.navigateToGame
+                }
+            })
 
         return binding.root
     }

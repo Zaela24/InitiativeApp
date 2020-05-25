@@ -14,9 +14,24 @@
             app:destination="@id/newGameFragment"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_homeFragment_to_gameFragment"
+            app:destination="@id/gameFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/newGameFragment"
         android:name="com.zaelaroseapps.initiativeapp.newGame.NewGameFragment"
-        android:label="NewGameFragment" />
+        android:label="NewGameFragment" >
+        <action
+            android:id="@+id/action_newGameFragment_to_gameFragment"
+            app:destination="@id/gameFragment"
+            app:popUpTo="@id/newGameFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.zaelaroseapps.initiativeapp.game.GameFragment"
+        android:label="GameFragment" />
 </navigation>

@@ -17,9 +17,9 @@ class HomeViewModel : ViewModel() {
     val navigateToNewGame: LiveData<Boolean>
         get() = _navigateToNewGame
 
-    private val _navigateToLoad = MutableLiveData<Boolean>()
-    val navigateToLoad: LiveData<Boolean>
-        get() = _navigateToLoad
+    private val _navigateToGame = MutableLiveData<Boolean>()
+    val navigateToGame: LiveData<Boolean>
+        get() = _navigateToGame
 
     private val _navigateToInstructions = MutableLiveData<Boolean>()
     val navigateToInstructions: LiveData<Boolean>
@@ -31,8 +31,8 @@ class HomeViewModel : ViewModel() {
     fun onNewClicked() {
         _navigateToNewGame.value = true
     }
-    fun onLoadClicked() {
-        _navigateToLoad.value = true
+    fun onContinueClicked() {
+        _navigateToGame.value = true
     }
     fun onHowToClicked() {
         _navigateToInstructions.value = true
@@ -44,8 +44,8 @@ class HomeViewModel : ViewModel() {
     fun onNavigatedToNew() {
         _navigateToNewGame.value = false
     }
-    fun onNavigatedToLoaf() {
-        _navigateToLoad.value = false
+    fun onNavigatedToGame() {
+        _navigateToGame.value = false
     }
     fun  onNavigatedToInstructions() {
         _navigateToInstructions.value = false

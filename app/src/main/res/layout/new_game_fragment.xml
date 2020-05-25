@@ -90,7 +90,7 @@
             app:layout_constraintVertical_bias="0.098" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/character_list"
+            android:id="@+id/new_character_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
@@ -109,7 +109,7 @@
             app:layout_constraintBottom_toTopOf="@id/button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/character_list"
+            app:layout_constraintTop_toBottomOf="@id/new_character_list"
             app:layout_constraintVertical_bias="0.98" />
 
         <Button

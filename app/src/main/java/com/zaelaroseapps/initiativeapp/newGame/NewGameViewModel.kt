@@ -99,7 +99,8 @@ class NewGameViewModel(val database: CharacterDao) : ViewModel() {
     private suspend fun addCharacter(character: Character) {
         withContext(Dispatchers.IO) {
             database.addNewCharacter(character)
-           // _characterList.value = database.getAll()
+            //TODO( find another way to update when adding a new character )
+//           _characterList.value = database.getAll()
         }
     }
 
