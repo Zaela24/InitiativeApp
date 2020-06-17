@@ -14,43 +14,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editText"
-            style="@style/OutlinedEditText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="24dp"
-            android:ems="10"
-            android:hint="Name"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toTopOf="@id/checkBox"
-            app:layout_constraintEnd_toStartOf="@id/guideline2"
-            app:layout_constraintStart_toEndOf="@id/guideline"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:layout_constraintVertical_chainStyle="packed">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/encounter_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:fontFamily="@font/slackey"
-                android:inputType="textCapWords"
-                android:singleLine="true"
-                android:text="Encounter 1"
-                android:textColorHighlight="@color/primaryColor"
-                android:textSize="24sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
         <CheckBox
             android:id="@+id/checkBox"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
             android:buttonTint="@color/primaryColor"
             android:checked="false"
             android:text="Surprise Round"
@@ -58,10 +27,11 @@
             android:textColorLink="@color/primaryLightColor"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/divider"
-            app:layout_constraintEnd_toEndOf="@+id/editText"
-            app:layout_constraintStart_toStartOf="@+id/editText"
-            app:layout_constraintTop_toBottomOf="@+id/editText"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
@@ -94,33 +64,34 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/button"
             app:layout_constraintEnd_toStartOf="@id/guideline2"
             app:layout_constraintStart_toEndOf="@id/guideline"
-            app:layout_constraintTop_toBottomOf="@id/divider"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
+            app:layout_constraintTop_toBottomOf="@id/divider" />
 
         <View
             android:id="@+id/view"
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="4dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintBottom_toTopOf="@id/button"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/new_character_list"
-            app:layout_constraintVertical_bias="0.98" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="4dp"
+            android:onClick="@{() -> viewModel.onAdd()}"
             android:text="Start"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
-            android:onClick="@{() -> viewModel.onAdd()}"/>
+            app:layout_constraintStart_toStartOf="@+id/guideline" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

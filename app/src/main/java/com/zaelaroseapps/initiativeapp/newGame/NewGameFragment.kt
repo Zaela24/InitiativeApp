@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.zaelaroseapps.initiativeapp.database.CharacterDatabase
 import com.zaelaroseapps.initiativeapp.databinding.NewGameFragmentBinding
 
+
 class NewGameFragment : Fragment() {
 
     private lateinit var viewModel: NewGameViewModel

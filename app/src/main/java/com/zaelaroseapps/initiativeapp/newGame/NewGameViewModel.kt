@@ -10,6 +10,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.zaelaroseapps.initiativeapp.database.Character
 import com.zaelaroseapps.initiativeapp.database.CharacterDao
 import kotlinx.coroutines.*
+import java.util.logging.Logger
 
 class NewGameViewModel(val database: CharacterDao) : ViewModel() {
 
@@ -90,7 +91,6 @@ class NewGameViewModel(val database: CharacterDao) : ViewModel() {
 
     fun onAdd() {
         uiScope.launch {
-
             val newCharacter = Character()
 
             addCharacter(newCharacter)
