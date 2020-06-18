@@ -4,4 +4,13 @@
     <string name="new_game_text">New</string>
     <string name="continue_text">Continue</string>
     <string name="how_to_text">How to Use</string>
+    <string name="surprise_round">Surprise Round</string>
+    <string name="start">Start</string>
+    <string name="add_character">Add Character</string>
+    <string name="name">Name</string>
+    <string name="initiative_roll">Initiative Roll: ##</string>
+    <string name="hp">HP: ##</string>
+    <string name="round_3">Round 3</string>
+    <string name="next_turn">Next Turn</string>
+    <string name="acts_on_surprise_round">Acts on Surprise Round</string>
 </resources>

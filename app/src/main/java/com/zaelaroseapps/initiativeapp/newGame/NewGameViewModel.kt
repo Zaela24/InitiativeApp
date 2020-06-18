@@ -6,11 +6,9 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.android.material.textfield.TextInputEditText
 import com.zaelaroseapps.initiativeapp.database.Character
 import com.zaelaroseapps.initiativeapp.database.CharacterDao
 import kotlinx.coroutines.*
-import java.util.logging.Logger
 
 class NewGameViewModel(val database: CharacterDao) : ViewModel() {
 
@@ -90,14 +88,17 @@ class NewGameViewModel(val database: CharacterDao) : ViewModel() {
     }
 
     fun onAdd() {
+        Log.i("NG", "OnAdd Reached")
         uiScope.launch {
             val newCharacter = Character()
-
+            Log.i("NG", "OnAdd Coroutine Launched")
             addCharacter(newCharacter)
         }
     }
     private suspend fun addCharacter(character: Character) {
+        Log.i("NG", "Add Character Reached")
         withContext(Dispatchers.IO) {
+            Log.i("NG", "Add Character Coroutine Launched")
             database.addNewCharacter(character)
             //TODO( find another way to update when adding a new character )
 //           _characterList.value = database.getAll()

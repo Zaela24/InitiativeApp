@@ -3,7 +3,6 @@
 package com.zaelaroseapps.initiativeapp
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavDestination
@@ -52,12 +51,10 @@ class MainActivity : AppCompatActivity()  {
             val toolBar = supportActionBar ?: return@addOnDestinationChangedListener
             when(destination.id) {
                 R.id.homeFragment -> {
-                    toolBar.setDisplayShowTitleEnabled(false)
-                    binding.toolbarTitle.visibility = View.VISIBLE
+                    binding.toolbar.title = "Home"
                 }
                 else -> {
-                    toolBar.setDisplayShowTitleEnabled(true)
-                    binding.toolbarTitle.visibility = View.GONE
+                    binding.toolbar.title = "Game"
                 }
             }
         }

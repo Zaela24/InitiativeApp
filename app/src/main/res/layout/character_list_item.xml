@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="character"
             type="com.zaelaroseapps.initiativeapp.database.Character" />
+
         <variable
             name="clickListener"
             type="com.zaelaroseapps.initiativeapp.game.CharacterClickListener" />
@@ -48,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Name"
+            android:text="@string/name"
             android:textSize="36sp"
             app:layout_constraintBottom_toTopOf="@+id/textView7"
             app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +65,7 @@
             android:layout_marginStart="2dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Initiative Roll: ##"
+            android:text="@string/initiative_roll"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/textView8"
             app:layout_constraintHorizontal_chainStyle="packed"
@@ -76,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_heart_icon"
-            android:text=" HP: ##"
+            android:text="@string/hp"
             app:layout_constraintBottom_toBottomOf="@+id/textView7"
             app:layout_constraintEnd_toStartOf="@+id/linearLayout"
             app:layout_constraintStart_toEndOf="@+id/textView7"
