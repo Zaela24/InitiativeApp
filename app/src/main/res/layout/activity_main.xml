@@ -31,7 +31,8 @@
                     android:layout_height="?attr/actionBarSize"
                     android:background="@color/surface"
                     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                    app:title="Home">
+                    app:title="Home"
+                    app:menu="@menu/new_game_menu">
 
                 </com.google.android.material.appbar.MaterialToolbar>
             </com.google.android.material.appbar.AppBarLayout>

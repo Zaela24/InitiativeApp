@@ -8,9 +8,10 @@
     <string name="start">Start</string>
     <string name="add_character">Add Character</string>
     <string name="name">Name</string>
-    <string name="initiative_roll">Initiative Roll: ##</string>
-    <string name="hp">HP: ##</string>
+    <string name="initiative_roll">Initiative Roll</string>
+    <string name="hp">HP</string>
     <string name="round_3">Round 3</string>
     <string name="next_turn">Next Turn</string>
     <string name="acts_on_surprise_round">Acts on Surprise Round</string>
+    <string name="add">Add</string>
 </resources>
