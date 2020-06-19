@@ -8,8 +8,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "game_table")
 class Character {
-    @PrimaryKey(autoGenerate = true)
-    //TODO(Implement work around for auto-gen + DELETE bug)
+    @PrimaryKey(autoGenerate = false)
     var charID = 0
 
     @ColumnInfo(name = "side")
@@ -19,8 +18,8 @@ class Character {
     var name: String = "Name"
 
     @ColumnInfo(name = "hp")
-    var hp = -1
+    var hp = 0
 
     @ColumnInfo(name = "initiative_roll")
-    var initiativeRoll = -1
+    var initiativeRoll = 0
 }

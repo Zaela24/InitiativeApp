@@ -16,7 +16,7 @@ import com.zaelaroseapps.initiativeapp.databinding.NewGameFragmentBinding
 class NewGameFragment : Fragment() {
 
     private lateinit var viewModel: NewGameViewModel
-    lateinit var menuItem: MenuItem
+    private lateinit var menuItem: MenuItem
 
     /**
      * Declare that there will be a menu item

@@ -12,42 +12,58 @@ import kotlinx.coroutines.*
 
 class NewGameViewModel(val database: CharacterDao) : ViewModel() {
 
-//    private var _gameTitle = MutableLiveData<String>()
-//    val gameTitle: LiveData<String>
-//        get() = _gameTitle
-
+    /**
+     * Allows cancelling of all ongoing Coroutines when onCleared() is called
+     */
     private var viewModelJob = Job()
 
+    /**
+     * Defines Coroutine scope for all UI updates
+     */
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    //TODO( Add doc comments )
+    /**
+     * Used for manual incrementing of primary key for Character objects
+     */
+    private var pKey = 1
 
+    /**
+     * Encapsulated LiveData list to store list of currently available Characters
+     */
     private var _characterList = MutableLiveData<List<Character>>()
     val characterList: LiveData<List<Character>>
         get() = _characterList
 
-//    private var _team = MutableLiveData<String>()
-//    val team: LiveData<String>
-//        get() = _team
-//
-//    fun onTeamSelected(teamStr: String) {
-//        _team.value = teamStr
-//    }
+    /**
+     * Encapsulated LiveData to keep track of character selected by retaining the charID primary key
+     */
     private var _characterClicked = MutableLiveData<Int>()
     val characterClicked: LiveData<Int>
         get() = _characterClicked
 
+    /**
+     * Accompanying public function to be used as part of clickListener to determine which Character
+     * is selected by the user.
+     */
     fun onCharacterClicked(id: Int) {
         _characterClicked.value = id
     }
 
+    /**
+     * Encapsulated LiveData to help record which group each Character belongs to.
+     *
+     * The three choices are determined by a choice from a dropdown spinner: Enemy, Ally, or Neutral
+     */
+    private var _team = MutableLiveData<String>()
+    val team: LiveData<String>
+        get() = _team
+
+    /**
+     * Encapsulated LiveData to keep track of whether or not a surprise round occurs
+     */
     private var _surpriseRound = MutableLiveData<Boolean>()
     val surpriseRound: LiveData<Boolean>
         get() = _surpriseRound
-
-    private var _navigateToGame = MutableLiveData<Boolean>()
-    val navigateToGame: LiveData<Boolean>
-        get() = _navigateToGame
 
     fun onSurpriseRoundChecked() {
         _surpriseRound.value = true
@@ -57,6 +73,10 @@ class NewGameViewModel(val database: CharacterDao) : ViewModel() {
         _surpriseRound.value = false
     }
 
+    private var _navigateToGame = MutableLiveData<Boolean>()
+    val navigateToGame: LiveData<Boolean>
+        get() = _navigateToGame
+
     fun onNavigateToGame() {
         _navigateToGame.value = true
     }
@@ -65,7 +85,11 @@ class NewGameViewModel(val database: CharacterDao) : ViewModel() {
         _navigateToGame.value = false
     }
 
-
+    fun onEdit() {
+        uiScope.launch {
+            // figure out how to listen to edits for each character
+        }
+    }
 
     private suspend fun editCharacter(character: Character) {
         withContext(Dispatchers.IO) {
@@ -73,9 +97,41 @@ class NewGameViewModel(val database: CharacterDao) : ViewModel() {
         }
     }
 
+    fun onDelete() {
+        uiScope.launch {
+            // figure out how to track which character's delete button is pressed
+        }
+    }
+
     private suspend fun deleteCharacter(charID: Int) {
         withContext(Dispatchers.IO) {
             database.delete(charID)
+        }
+    }
+
+    fun onAdd() {
+        Log.i("NG", "OnAdd Reached")
+        uiScope.launch {
+            val newCharacter = Character()
+            newCharacter.charID = pKey  // assign newly created Character a unique primary key
+            Log.i("NG", "OnAdd Coroutine Launched")
+            addCharacter(newCharacter)
+        }
+        pKey++  // increment primary key
+    }
+    private suspend fun addCharacter(character: Character) {
+        Log.i("NG", "Add Character Reached")
+        withContext(Dispatchers.IO) {
+            Log.i("NG", "Add Character Coroutine Launched")
+            database.addNewCharacter(character)
+        }
+        Log.i("NG", "CharID added: " + character.charID.toString())
+        getList()  // Fetches updated character list and updates RecyclerView contents
+    }
+
+    private fun getList() {
+        uiScope.launch {
+            _characterList.value = fetchCharacters()
         }
     }
 
@@ -87,43 +143,9 @@ class NewGameViewModel(val database: CharacterDao) : ViewModel() {
         return items
     }
 
-    fun onAdd() {
-        Log.i("NG", "OnAdd Reached")
-        uiScope.launch {
-            val newCharacter = Character()
-            Log.i("NG", "OnAdd Coroutine Launched")
-            addCharacter(newCharacter)
-        }
-    }
-    private suspend fun addCharacter(character: Character) {
-        Log.i("NG", "Add Character Reached")
-        withContext(Dispatchers.IO) {
-            Log.i("NG", "Add Character Coroutine Launched")
-            database.addNewCharacter(character)
-        }
-        getList()  // Fetches updated character list and updates RecyclerView contents
-    }
-
-    fun onEdit() {
-        uiScope.launch {
-            // figure out how to listen to edits for each character
-        }
-    }
-
-    fun onDelete() {
-        uiScope.launch {
-            // figure out how to track which character's delete button is pressed
-        }
-    }
 
     init {
         getList()
-    }
-
-    private fun getList() {
-        uiScope.launch {
-            _characterList.value = fetchCharacters()
-        }
     }
 
     override fun onCleared() {
