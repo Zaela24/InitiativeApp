@@ -100,9 +100,8 @@ class NewGameViewModel(val database: CharacterDao) : ViewModel() {
         withContext(Dispatchers.IO) {
             Log.i("NG", "Add Character Coroutine Launched")
             database.addNewCharacter(character)
-            //TODO( find another way to update when adding a new character )
-//           _characterList.value = database.getAll()
         }
+        getList()  // Fetches updated character list and updates RecyclerView contents
     }
 
     fun onEdit() {

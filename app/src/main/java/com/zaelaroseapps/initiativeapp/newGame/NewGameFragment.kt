@@ -56,12 +56,11 @@ class NewGameFragment : Fragment() {
 
         binding.newCharacterList.adapter = adapter
 
-        // Using viewLifeCycleOwner makes the observer only work while this fragment is on screen
-        viewModel.characterList.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                adapter.addFooterAndSubmitList(it)
-            }
-        })
+        viewModel.characterList.observe(viewLifecycleOwner,
+            Observer {
+                adapter.submitList(it)
+                manager.scrollToPosition(adapter.itemCount - 1)
+            })
 
         return binding.root
     }
