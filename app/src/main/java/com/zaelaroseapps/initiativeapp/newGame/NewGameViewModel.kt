@@ -46,6 +46,7 @@ class NewGameViewModel(val database: CharacterDao) : ViewModel() {
      * is selected by the user.
      */
     fun onCharacterClicked(id: Int) {
+        Log.i("NGVM", "Clicked $id")
         _characterClicked.value = id
     }
 
