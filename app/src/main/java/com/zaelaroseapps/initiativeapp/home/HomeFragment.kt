@@ -11,7 +11,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.zaelaroseapps.initiativeapp.R
-import com.zaelaroseapps.initiativeapp.database.CharacterDatabase
 import com.zaelaroseapps.initiativeapp.databinding.HomeFragmentBinding
 import kotlinx.coroutines.*
 

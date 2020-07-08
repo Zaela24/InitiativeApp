@@ -17,9 +17,9 @@ class Character {
     @ColumnInfo(name = "name")
     var name: String = "Name"
 
-    @ColumnInfo(name = "hp")
-    var hp = 0
-
     @ColumnInfo(name = "initiative_roll")
     var initiativeRoll = 0
+
+    @ColumnInfo(name = "acts_on_surprise")
+    var actsOnSurprise: Boolean = false
 }
