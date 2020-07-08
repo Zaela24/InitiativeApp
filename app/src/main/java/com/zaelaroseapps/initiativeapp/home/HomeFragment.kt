@@ -11,8 +11,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.zaelaroseapps.initiativeapp.R
-import com.zaelaroseapps.initiativeapp.database.Character
-import com.zaelaroseapps.initiativeapp.database.CharacterDao
 import com.zaelaroseapps.initiativeapp.database.CharacterDatabase
 import com.zaelaroseapps.initiativeapp.databinding.HomeFragmentBinding
 import kotlinx.coroutines.*
@@ -35,16 +33,6 @@ class HomeFragment : Fragment() {
         viewModel.navigateToNewGame.observe(viewLifecycleOwner,
         Observer { shouldNavigate ->
             if(shouldNavigate == true) {
-                val database = CharacterDatabase
-                    .getInstance(requireNotNull(context))
-                    .characterDao
-                // TODO( rewrite coroutine to be cleaner; remember to fix autoinc issue )
-                CoroutineScope(Dispatchers.Main + thisJob).launch {
-                    withContext(Dispatchers.IO) {
-                        database.clear()
-                        database.addNewCharacter(Character())
-                    }
-                }
                 val navController = binding.root.findNavController()
                 navController.navigate(R.id.action_homeFragment_to_newGameFragment)
                 viewModel.navigateToNewGame
@@ -54,9 +42,6 @@ class HomeFragment : Fragment() {
         viewModel.navigateToGame.observe(viewLifecycleOwner,
             Observer { shouldNavigate ->
                 if (shouldNavigate == true) {
-                    val database = CharacterDatabase
-                        .getInstance(requireNotNull(context))
-                        .characterDao
                     val navController = binding.root.findNavController()
                     navController.navigate(R.id.action_homeFragment_to_gameFragment)
                     viewModel.navigateToGame

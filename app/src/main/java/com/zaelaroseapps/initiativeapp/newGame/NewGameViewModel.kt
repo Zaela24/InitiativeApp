@@ -25,7 +25,7 @@ class NewGameViewModel(val database: CharacterDao) : ViewModel() {
     /**
      * Used for manual incrementing of primary key for Character objects
      */
-    private var pKey = 1
+    private var pKey = 0
 
     /**
      * Encapsulated LiveData list to store list of currently available Characters
@@ -146,7 +146,20 @@ class NewGameViewModel(val database: CharacterDao) : ViewModel() {
 
 
     init {
+        clearList()
         getList()
+    }
+
+    private fun clearList() {
+        uiScope.launch {
+            clearTable()
+        }
+    }
+
+    private suspend fun clearTable() {
+        withContext(Dispatchers.IO) {
+            database.clear()
+        }
     }
 
     override fun onCleared() {
