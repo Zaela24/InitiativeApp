@@ -3,6 +3,9 @@
 package com.zaelaroseapps.initiativeapp.newGame
 
 import android.util.Log
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
+import androidx.databinding.Observable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +13,7 @@ import com.zaelaroseapps.initiativeapp.database.Character
 import com.zaelaroseapps.initiativeapp.database.CharacterDao
 import kotlinx.coroutines.*
 
-class NewGameViewModel(val database: CharacterDao) : ViewModel() {
+class NewGameViewModel(val database: CharacterDao) : ObservableViewModel() {
 
     /**
      * Allows cancelling of all ongoing Coroutines when onCleared() is called
@@ -66,12 +69,32 @@ class NewGameViewModel(val database: CharacterDao) : ViewModel() {
     val surpriseRound: LiveData<Boolean>
         get() = _surpriseRound
 
-    fun onSurpriseRoundChecked() {
-        _surpriseRound.value = true
+    @Bindable
+    fun getSurpriseRoundChecked() : Boolean {
+        return when (val value = surpriseRound.value) {
+            is Boolean -> value
+            else -> {
+                setSurpriseRoundChecked(false)
+                false
+            }
+        }
+    }
+    fun setSurpriseRoundChecked(value: Boolean) {
+        if (surpriseRound.value != value) {
+            _surpriseRound.value = value
+        }
     }
 
-    fun onSurpriseRoundUnchecked() {
-        _surpriseRound.value = false
+    fun onActsOnSurpriseChecked(id: Int) {
+
+    }
+
+    fun onInitiativeRollEdited(id: Int) {
+
+    }
+
+    fun onNameEdited(id: Int) {
+
     }
 
     private var _navigateToGame = MutableLiveData<Boolean>()
@@ -84,12 +107,6 @@ class NewGameViewModel(val database: CharacterDao) : ViewModel() {
 
     fun onNavigatedToGame() {
         _navigateToGame.value = false
-    }
-
-    fun onEdit() {
-        uiScope.launch {
-            // figure out how to listen to edits for each character
-        }
     }
 
     private suspend fun editCharacter(character: Character) {
@@ -154,6 +171,8 @@ class NewGameViewModel(val database: CharacterDao) : ViewModel() {
         uiScope.launch {
             clearTable()
         }
+//        _characterList.value = null  // Empty local list after clearing table
+        // Uncomment above if clear button is added
     }
 
     private suspend fun clearTable() {

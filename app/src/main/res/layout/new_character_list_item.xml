@@ -61,6 +61,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
+                android:onClick="@{() -> clickListener.onClick(character)}"
+                android:textColorHighlight="@color/primaryColor"
                 android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,6 +85,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
+                android:onClick="@{() -> clickListener.onClick(character)}"
+                android:textColorHighlight="@color/primaryColor"
                 android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -90,8 +94,10 @@
             android:id="@+id/checkBox2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/primaryColor"
             android:text="@string/acts_on_surprise_round"
             android:textColorHighlight="@color/primaryColor"
+            android:textColorLink="@color/primaryLightColor"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
